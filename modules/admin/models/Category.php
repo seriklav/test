@@ -27,6 +27,11 @@ class Category extends \yii\db\ActiveRecord
 		return 'category';
 	}
 
+	public function afterSave($insert, $changedAttributes){
+		parent::afterSave($insert, $changedAttributes);
+		Yii::$app->cache->set('menu', '');
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
