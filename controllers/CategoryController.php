@@ -3,14 +3,12 @@
 
 namespace app\controllers;
 
-
-use app\modules\admin\controllers\AppAdminController;
 use app\modules\admin\models\Article;
 use app\modules\admin\models\Category;
 use yii\data\Pagination;
 use yii\web\NotFoundHttpException;
 
-class CategoryController extends AppAdminController
+class CategoryController extends AppController
 {
 	public function actionView($id)
 	{

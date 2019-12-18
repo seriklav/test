@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\UserSearch */
@@ -39,8 +40,26 @@ $this->params['breadcrumbs'][] = $this->title;
 		        }
 	        ],
             'rating',
-            'created_at',
-            'update_at',
+	        [
+		        'attribute' => 'created_at',
+		        'format' => ['date', 'php:Y-m-d H:i:s'],
+		        'filter' => DatePicker::widget([
+			        'model' => $searchModel,
+			        'attribute' => 'created_at',
+			        'dateFormat' => 'yyyy-MM-dd',
+			        'options' => ['class' => 'form-control', 'placeholder' => 'Дата создания...']
+		        ])
+	        ],
+	        [
+		        'attribute' => 'update_at',
+		        'format' => ['date', 'php:Y-m-d H:i:s'],
+		        'filter' => DatePicker::widget([
+			        'model' => $searchModel,
+			        'attribute' => 'update_at',
+			        'dateFormat' => 'yyyy-MM-dd',
+			        'options' => ['class' => 'form-control', 'placeholder' => 'Дата обновления...']
+		        ])
+	        ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

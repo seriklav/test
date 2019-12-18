@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\modules\admin\models\History;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -15,6 +16,8 @@ use yii\web\IdentityInterface;
  * @property string last_name
  * @property int role
  * @property float rating
+ *
+ * @property History[] $histories
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -24,6 +27,14 @@ class User extends ActiveRecord implements IdentityInterface
 	public static function tableName()
 	{
 		return 'user';
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getHistories()
+	{
+		return $this->hasMany(History::className(), ['user_id' => 'id']);
 	}
 
 	/**

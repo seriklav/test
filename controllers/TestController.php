@@ -3,15 +3,14 @@
 
 namespace app\controllers;
 
-
-use app\modules\admin\controllers\AppAdminController;
+use app\models\User;
 use app\modules\admin\models\Answer;
 use app\modules\admin\models\History;
 use app\modules\admin\models\Test;
 use Yii;
 use yii\web\NotFoundHttpException;
 
-class TestController extends AppAdminController
+class TestController extends AppController
 {
 	public function actionView($id)
 	{
@@ -40,6 +39,10 @@ class TestController extends AppAdminController
 
 				$history->save();
 
+				$user = \app\modules\admin\models\User::findOne(Yii::$app->user->identity->getId());
+				$user->rating += $balls;
+				$user->save();
+
 				Yii::$app->session->setFlash('success', 'Вы набрали: ' . $balls . ' бал(ов)');
 			}
 		}
@@ -53,6 +56,11 @@ class TestController extends AppAdminController
 		}
 
 		$model->created_at = $this->formatDate($model->created_at);
+
+		$this->setMeta([
+			'title' => 'Тест ' . $model->name,
+			'description' => 'Тест ' . mb_strimwidth(strip_tags($model->description), 0, 250, "..."),
+		]);
 
 		return $this->render('view', [
 			'model' => $model,

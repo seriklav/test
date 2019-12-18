@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\modules\admin\controllers;
+namespace app\modules\user\controllers;
 
 
 use app\models\User;
@@ -9,16 +9,12 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 
-class AppAdminController extends Controller
+/**
+ *
+ * @property array $meta
+ */
+class AppUserController extends Controller
 {
-	public function __construct($id, $module, $config = [])
-	{
-		parent::__construct($id, $module, $config);
-		if (\Yii::$app->user->identity->role == User::ROLE_USER) {
-			$this->redirect('/user');
-		}
-	}
-
 	public function behaviors()
 	{
 		return [

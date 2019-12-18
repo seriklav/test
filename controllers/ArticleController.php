@@ -3,12 +3,10 @@
 
 namespace app\controllers;
 
-
-use app\modules\admin\controllers\AppAdminController;
 use app\modules\admin\models\Article;
 use yii\web\NotFoundHttpException;
 
-class ArticleController extends AppAdminController
+class ArticleController extends AppController
 {
 	public function actionView($id)
 	{

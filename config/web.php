@@ -15,6 +15,11 @@ $config = [
 			'class' => 'app\modules\admin\Module',
 			'layout' => 'admin',
 			'defaultRoute' => 'test/index',
+		],
+		'user' => [
+			'class' => 'app\modules\user\Module',
+			'layout' => 'user',
+			'defaultRoute' => 'user/index',
 		]
 	],
     'aliases' => [
