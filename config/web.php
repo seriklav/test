@@ -4,17 +4,18 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'aleco-test',
+	'name' => 'Aleco-Test',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
 	'language' => 'ru-RU',
-	//'defaultRoute' => 'category/index',
+	'defaultRoute' => '/site/index',
 	'modules' => [
 		'admin' => [
 			'class' => 'app\modules\admin\Module',
 			'layout' => 'admin',
-			'defaultRoute' => 'category/index',
-		],
+			'defaultRoute' => 'test/index',
+		]
 	],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -61,6 +62,17 @@ $config = [
             ],
         ],
     ],
+	'controllerMap' => [
+		'elfinder' => [
+			'class' => 'mihaildev\elfinder\PathController',
+			'access' => ['@'],
+			'root' => [
+				'baseUrl'=>'/web',
+				'path' => 'upload/global',
+				'name' => 'Global'
+			]
+		]
+	],
     'params' => $params,
 ];
 

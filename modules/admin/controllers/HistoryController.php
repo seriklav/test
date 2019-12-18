@@ -12,23 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * HistoryController implements the CRUD actions for History model.
  */
-class HistoryController extends Controller
+class HistoryController extends AppAdminController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all History models.
      * @return mixed

@@ -11,6 +11,8 @@ use Yii;
  * @property int|null $test_id
  * @property string $name
  * @property string|null $value
+ * @property array|null $values
+ * @property int|null $ref_test_id
  * @property int|null $correct
  * @property float|null $balls
  *
@@ -18,6 +20,9 @@ use Yii;
  */
 class Answer extends \yii\db\ActiveRecord
 {
+	public $values = [];
+	public $ref_test_id = 0;
+
     /**
      * {@inheritdoc}
      */
@@ -34,8 +39,8 @@ class Answer extends \yii\db\ActiveRecord
         return [
             [['test_id', 'correct'], 'integer'],
             [['name'], 'required'],
-            [['value'], 'string'],
-            [['balls'], 'number'],
+            [['values'], 'safe'],
+            [['balls', 'correct'], 'number'],
             [['name'], 'string', 'max' => 255],
             [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Test::className(), 'targetAttribute' => ['test_id' => 'id']],
         ];
@@ -48,11 +53,10 @@ class Answer extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'test_id' => 'Test ID',
-            'name' => 'Name',
-            'value' => 'Value',
-            'correct' => 'Correct',
-            'balls' => 'Balls',
+            'test_id' => 'Тест',
+            'name' => 'Вопрос',
+            'correct' => 'Правильный ответ',
+            'balls' => 'Балы',
         ];
     }
 

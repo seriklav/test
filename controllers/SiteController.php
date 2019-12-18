@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\modules\admin\models\Article;
+use http\Url;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -54,15 +56,29 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+	/**
+	 * Login action.
+	 *
+	 * @return Response|string
+	 */
+	public function actionIndex()
+	{
+		if (Yii::$app->user->isGuest) {
+			$model = new LoginForm();
+
+			$model->password = '';
+
+			return $this->render('login', [
+				'model' => $model,
+			]);
+		} else {
+			$articles = Article::find()->limit(6)->orderBy(['created_at' => SORT_DESC])->asArray()->all();
+
+			return $this->render('index', [
+				'articles' => $articles
+			]);
+		}
+	}
 
     /**
      * Login action.
@@ -77,7 +93,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+	        return $this->goHome();
         }
 
         $model->password = '';
@@ -96,33 +112,5 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\models\AnswerSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Answers';
+$this->title = 'Вопросы и ответы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="answer-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Answer', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать вопрос', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,7 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'test_id',
+	        [
+		        'attribute' => 'test_id',
+		        'value' => function($data) {
+			        return $data->test->name ?? 'Нет';
+		        }
+	        ],
             'name',
             'value:ntext',
             'correct',

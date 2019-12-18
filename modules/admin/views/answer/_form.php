@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -10,15 +11,40 @@ use yii\widgets\ActiveForm;
 
 <div class="answer-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+	<?php if ($model->ref_test_id): ?>
+	    <?php $form = ActiveForm::begin([
+		    'action' => ['/admin/answer/create', 'test_id' => $model->ref_test_id],
+	    ]); ?>
+	<?php else: ?>
+		<?php $form = ActiveForm::begin(); ?>
+	<?php endif; ?>
 
-    <?= $form->field($model, 'test_id')->textInput() ?>
+	<?php $model->test_id = $model->test_id ?? $model->ref_test_id; ?>
+	<?= $form->field($model, 'test_id')->dropDownList(ArrayHelper::map(\app\modules\admin\models\Test::find()->all(),'id','name'), [
+		'prompt' => [
+			'text' => 'Без теста',
+			'options' => [
+				'value' => '0'
+			]
+		]
+	]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'value')->textarea(['rows' => 6]) ?>
+	<label class="control-label">Ответы</label>
+	<button type="button" class="add-field btn btn-success btn-xs "><i class="glyphicon glyphicon-plus"></i></button>
+	<table class="table-container" style="width: 100%">
+		<tbody class="table-body">
+			<?php foreach ($model->values as $key => $value): ?>
+				<tr class="table-row" id="<?= $key ?>">
+					<td style="padding-bottom: 2%;"><input type="text" class="form-control" value="<?= $value ?>" name="Answer[values][<?= $key ?>]"></td>
+					<td style="padding-bottom: 2%; padding-left: 1%"><button type="button" class="remove-item btn btn-danger btn-xs"><i class="glyphicon glyphicon-minus"></i></button></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
 
-    <?= $form->field($model, 'correct')->textInput() ?>
+	<?= $form->field($model, 'correct')->textInput() ?>
 
     <?= $form->field($model, 'balls')->textInput(['maxlength' => true]) ?>
 
@@ -29,3 +55,34 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+	$js = <<< JS
+	    $(document).ready(function() {
+        $('body').on('click', '.remove-item', function(e) {
+            e.preventDefault();
+            if(confirm('Вы уверены?')){
+                $(this).closest('.table-row').remove();
+            }
+            return false;
+        });
+            
+        $('.add-field').on('click', function() {
+            var container = $(this).siblings('.table-container');
+            var table = container.find('.table-body');
+            var lastRow = table.find('.table-row').last();
+            var id = Number(lastRow.attr('id')) + Number(1);
+            if(!($.isNumeric(id))) id = 0;
+
+  			table.append(
+                '<tr class="table-row" id="'+id+'">' +
+                '<td style="padding-bottom: 2%;"><input type="text" class="form-control" name="Answer[values][' + id + ']"></td>' +
+                '<td style="padding-bottom: 2%; padding-left: 1%"><button type="button" class="remove-item btn btn-danger btn-xs"><i class="glyphicon glyphicon-minus"></i></button></td>' +
+                '</tr>'
+            );
+        });
+    });
+JS;
+
+	$this->registerJs($js);
+?>

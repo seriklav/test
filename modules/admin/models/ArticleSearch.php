@@ -11,6 +11,8 @@ use app\modules\admin\models\Article;
  */
 class ArticleSearch extends Article
 {
+	public $category;
+
     /**
      * {@inheritdoc}
      */
@@ -18,6 +20,7 @@ class ArticleSearch extends Article
     {
         return [
             [['id', 'category_id'], 'integer'],
+	        [['category'], 'string'],
             [['name', 'description', 'created_at', 'update_at'], 'safe'],
         ];
     }
@@ -40,7 +43,8 @@ class ArticleSearch extends Article
      */
     public function search($params)
     {
-        $query = Article::find();
+//        $query = Article::find();
+        $query = Article::find()->joinWith('category');;
 
         // add conditions that should always apply here
 
@@ -65,7 +69,8 @@ class ArticleSearch extends Article
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+	        ->andFilterWhere(['like', 'category.name', $this->category]);
 
         return $dataProvider;
     }

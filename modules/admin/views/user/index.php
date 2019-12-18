@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,14 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'email:email',
-            'password',
-            'hash',
             'first_name',
-            //'last_name',
-            //'role',
-            //'rating',
-            //'created_at',
-            //'update_at',
+            'last_name',
+	        [
+		        'attribute' => 'role',
+		        'format' => 'raw',
+		        'filter' => ['0' => 'Пользователь', '1' => 'Администратор'],
+		        'value' => function($data) {
+			        return $data->role ? '<span class="label label-warning">Администратор</span>' : '<span class="label label-success">Пользователь</span>';
+		        }
+	        ],
+            'rating',
+            'created_at',
+            'update_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

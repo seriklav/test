@@ -3,10 +3,14 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\modules\admin\models\Category;
+use app\modules\admin\models\Test;
 use app\widgets\Alert;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -28,34 +32,64 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
+	    NavBar::begin([
+	        'brandLabel' => Yii::$app->name,
+	        'brandUrl' => Yii::$app->homeUrl,
+	        'options' => [
+	            'class' => 'navbar-inverse navbar-fixed-top',
+	        ],
+	    ]);
+		    if (!Yii::$app->user->isGuest) {
+			    $menuItems = [
+				    ['label' => 'Мой аккаунт', 'url' => ['/admin']],
+			    ];
+
+
+			    $categories = Category::findAll(['parent_id' => 0]);
+			    $menuCategoriesItem = [];
+
+			    foreach ($categories as $category) {
+				    $menuCategoriesItem[] = [
+				        'label' => $category['name'],
+					    'url' => Url::to(['/category/view', 'id' => $category['id']])
+				    ];
+			    }
+
+			    $menuItems[] = [
+			        'label' => 'Категории',
+				    'items' => $menuCategoriesItem
+			    ];
+
+			    $tests = Test::find()->asArray()->all();
+			    $menuTestItem = [];
+
+			    foreach ($tests as $test) {
+				    $menuTestItem[] = [
+					    'label' => $test['name'],
+					    'url' => Url::to(['/test/view', 'id' => $test['id']])
+				    ];
+			    }
+
+			    $menuItems[] = [
+			        'label' => 'Тесты',
+				    'items' => $menuTestItem
+			    ];
+
+			    $menuItems[] = '<li class="logout-main">'
+				    . Html::beginForm(['/site/logout'], 'post')
+				    . Html::submitButton(
+					    'Logout (' . Yii::$app->user->identity->first_name . ' ' . Yii::$app->user->identity->last_name . ')',
+					    ['class' => 'btn btn-link logout']
+				    )
+				    . Html::endForm()
+				    . '</li>';
+
+			    echo Nav::widget([
+				    'options' => ['class' => 'navbar-nav navbar-right'],
+				    'items' => $menuItems,
+			    ]);
+		    }
+	    NavBar::end();
     ?>
 
     <div class="container">
@@ -69,9 +103,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+	    <p class="pull-left">&copy; Aleco-Test <?= date('Y') ?></p>
     </div>
 </footer>
 

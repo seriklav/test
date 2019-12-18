@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\modules\admin\models\Category;
 use Yii;
 use app\modules\admin\models\Article;
 use app\modules\admin\models\ArticleSearch;
@@ -12,23 +13,8 @@ use yii\filters\VerbFilter;
 /**
  * ArticleController implements the CRUD actions for Article model.
  */
-class ArticleController extends Controller
+class ArticleController extends AppAdminController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Article models.
      * @return mixed
@@ -70,8 +56,12 @@ class ArticleController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $category = new Category();
+	    $category->getTree();
+
         return $this->render('create', [
             'model' => $model,
+	        'category' => $category
         ]);
     }
 
@@ -90,8 +80,12 @@ class ArticleController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+	    $category = new Category();
+	    $category->getTree();
+
         return $this->render('update', [
             'model' => $model,
+	        'category' => $category
         ]);
     }
 

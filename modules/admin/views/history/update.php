@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\History */
 
-$this->title = 'Update History: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Histories', 'url' => ['index']];
+$this->title = 'Редактирование Истории: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'История', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="history-update">
 

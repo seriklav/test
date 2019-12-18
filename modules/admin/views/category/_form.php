@@ -12,7 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'parent_id')->textInput() ?>
+	<?= $form->field($model, 'parent_id')->dropDownList($model->tree, [
+		'prompt' => [
+			'text' => 'Нет родителя',
+			'options' => [
+				'value' => '0'
+			]
+		]
+	]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

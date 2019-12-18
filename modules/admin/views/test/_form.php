@@ -1,6 +1,9 @@
 <?php
 
+use yii\bootstrap\Collapse;
+use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -16,13 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'viewed')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'update_at')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList(['0' => 'Отключенно', '1' => 'Включенно']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -30,4 +27,8 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
+	<?= $model->id ? $this->render('_answers', [
+			'model' => $model
+		]) : '';
+	?>
 </div>

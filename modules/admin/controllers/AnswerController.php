@@ -12,23 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * AnswerController implements the CRUD actions for Answer model.
  */
-class AnswerController extends Controller
+class AnswerController extends AppAdminController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Answer models.
      * @return mixed
@@ -60,18 +45,29 @@ class AnswerController extends Controller
     /**
      * Creates a new Answer model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param $test_id integer
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($test_id = 0)
     {
         $model = new Answer();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+	        $model->value = json_encode($model->values);
+
+	        $model->save();
+
+	        if (Yii::$app->request->get('test_id', 0)) {
+		        return $this->redirect(['/admin/test/update', 'id' => Yii::$app->request->get('test_id', 0)]);
+	        } else {
+		        return $this->redirect(['view', 'id' => $model->id]);
+	        }
         }
 
+        $model->ref_test_id = $test_id;
+
         return $this->render('create', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 
@@ -86,12 +82,19 @@ class AnswerController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+	        $model->value = json_encode($model->values);
+
+	        $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+
+        $model->values = json_decode($model->value, true);
+
         return $this->render('update', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 

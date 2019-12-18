@@ -3,6 +3,9 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "test".
@@ -28,6 +31,23 @@ class Test extends \yii\db\ActiveRecord
         return 'test';
     }
 
+	/**
+	 * @return array
+	 */
+	public function behaviors()
+	{
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'attributes' => [
+					ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'update_at'],
+					ActiveRecord::EVENT_BEFORE_UPDATE => ['update_at'],
+				],
+				'value' => new Expression('NOW()'),
+			]
+		];
+	}
+
     /**
      * {@inheritdoc}
      */
@@ -36,8 +56,7 @@ class Test extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['description'], 'string'],
-            [['status', 'viewed'], 'integer'],
-            [['created_at', 'update_at'], 'safe'],
+            [['status'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -48,13 +67,11 @@ class Test extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'status' => 'Status',
-            'viewed' => 'Viewed',
-            'created_at' => 'Created At',
-            'update_at' => 'Update At',
+            'id' => '№ Теста',
+            'name' => 'Имя',
+            'description' => 'Описание',
+            'viewed' => 'Пройденно',
+            'status' => 'Статус',
         ];
     }
 

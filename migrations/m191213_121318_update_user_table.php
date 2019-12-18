@@ -3,16 +3,17 @@
 use yii\db\Migration;
 
 /**
- * Class m191212_130312_update_answer_table
+ * Class m191213_121318_update_user_table
  */
-class m191212_130312_update_answer_table extends Migration
+class m191213_121318_update_user_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-
+	    $this->dropColumn('user', 'hash');
+	    $this->addColumn('user', 'auth_key', $this->string(255));
     }
 
     /**
@@ -20,9 +21,9 @@ class m191212_130312_update_answer_table extends Migration
      */
     public function safeDown()
     {
-        echo "m191212_130312_update_answer_table cannot be reverted.\n";
 
-        return false;
+	    $this->addColumn('user', 'hash', $this->string(255));
+	    $this->dropColumn('user', 'auth_key');
     }
 
     /*
@@ -34,7 +35,7 @@ class m191212_130312_update_answer_table extends Migration
 
     public function down()
     {
-        echo "m191212_130312_update_answer_table cannot be reverted.\n";
+        echo "m191213_121318_update_user_table cannot be reverted.\n";
 
         return false;
     }

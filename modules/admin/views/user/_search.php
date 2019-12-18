@@ -21,11 +21,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password') ?>
 
-    <?= $form->field($model, 'hash') ?>
-
     <?= $form->field($model, 'first_name') ?>
 
-    <?php // echo $form->field($model, 'last_name') ?>
+    <?= $form->field($model, 'last_name') ?>
 
     <?php // echo $form->field($model, 'role') ?>
 
