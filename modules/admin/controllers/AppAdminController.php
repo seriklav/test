@@ -14,8 +14,12 @@ class AppAdminController extends Controller
 	public function __construct($id, $module, $config = [])
 	{
 		parent::__construct($id, $module, $config);
-		if (\Yii::$app->user->identity->role == User::ROLE_USER) {
-			$this->redirect('/user');
+		if (!\Yii::$app->user->isGuest) {
+			if (\Yii::$app->user->identity->role == User::ROLE_USER) {
+				$this->redirect('/user');
+			}
+		} else {
+			return $this->goHome();
 		}
 	}
 
