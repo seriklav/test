@@ -4,10 +4,22 @@
 namespace app\controllers;
 
 use app\modules\admin\models\Article;
+use Yii;
 use yii\web\NotFoundHttpException;
 
 class ArticleController extends AppController
 {
+	public function beforeAction($action)
+	{
+		if (Yii::$app->user->isGuest) {
+			return $this->redirect('/site/login');
+		}
+		if (!parent::beforeAction($action)) {
+			return false;
+		}
+		return true;
+	}
+
 	public function actionView($id)
 	{
 		$model = $this->findModel($id);

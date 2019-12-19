@@ -12,6 +12,17 @@ use yii\web\NotFoundHttpException;
 
 class TestController extends AppController
 {
+	public function beforeAction($action)
+	{
+		if (Yii::$app->user->isGuest) {
+			return $this->redirect('/site/login');
+		}
+		if (!parent::beforeAction($action)) {
+			return false;
+		}
+		return true;
+	}
+
 	public function actionView($id)
 	{
 		$balls = 0;
