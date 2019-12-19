@@ -6,6 +6,7 @@ namespace app\controllers;
 use app\modules\admin\models\Article;
 use app\modules\admin\models\Category;
 use yii\data\Pagination;
+use Yii;
 use yii\web\NotFoundHttpException;
 
 class CategoryController extends AppController
