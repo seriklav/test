@@ -68,8 +68,8 @@ class ArticleSearch extends Article
             'update_at' => $this->update_at,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
+        $query->andFilterWhere(['like', 'article.name', $this->name])
+            ->andFilterWhere(['like', 'article.description', $this->description])
 	        ->andFilterWhere(['like', 'category.name', $this->category]);
 
         return $dataProvider;
