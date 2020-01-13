@@ -67,7 +67,8 @@ class SessionSearch extends Session
             ->andFilterWhere(['like', 'data', $this->data])
             ->andFilterWhere(['like', 'user_id', $this->user_id])
             ->andFilterWhere(['like', 'last_ip', $this->last_ip])
-            ->andFilterWhere(['not', ['user_id' => null]]);
+            ->andFilterWhere(['not', ['user_id' => null]])
+            ->andFilterWhere(['not', ['user_id' => '']]);
 
         return $dataProvider;
     }
