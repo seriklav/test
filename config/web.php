@@ -27,6 +27,16 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+    	'session' => [
+		    'class' => 'yii\web\DbSession',
+		    'writeCallback' => function ($session) {
+			    return [
+				    'user_id' => Yii::$app->user->id,
+				    'last_activity' => new \yii\db\Expression('NOW()'),
+				    'last_ip' => Yii::$app->request->userIP,
+			    ];
+		    }
+	    ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Jw1xage_TvAcbaRk5FA8z3v4WqbOHe0g',
