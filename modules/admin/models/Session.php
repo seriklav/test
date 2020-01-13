@@ -55,7 +55,7 @@ class Session extends \yii\db\ActiveRecord
 	        'user_id' => 'Номер користувача',
 	        'first_name' => 'Імя',
 	        'last_name' => 'Фамілія',
-	        'email' => 'Фамілія',
+	        'email' => 'Email',
             'last_activity' => 'Остання активність',
             'last_ip' => 'IP адресса',
         ];
