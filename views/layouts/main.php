@@ -41,7 +41,7 @@ AppAsset::register($this);
 	    ]);
 		    if (!Yii::$app->user->isGuest) {
 			    $menuItems = [
-				    ['label' => 'Мой аккаунт', 'url' => ['/admin']],
+				    ['label' => 'Мій профіль', 'url' => ['/admin']],
 			    ];
 
 
@@ -56,7 +56,7 @@ AppAsset::register($this);
 			    }
 
 			    $menuItems[] = [
-			        'label' => 'Категории',
+			        'label' => 'Категорії',
 				    'items' => $menuCategoriesItem
 			    ];
 
@@ -71,14 +71,14 @@ AppAsset::register($this);
 			    }
 
 			    $menuItems[] = [
-			        'label' => 'Тесты',
+			        'label' => 'Тести',
 				    'items' => $menuTestItem
 			    ];
 
 			    $menuItems[] = '<li class="logout-main">'
 				    . Html::beginForm(['/site/logout'], 'post')
 				    . Html::submitButton(
-					    'Выход (' . Yii::$app->user->identity->first_name . ' ' . Yii::$app->user->identity->last_name . ')',
+					    'Вихід (' . Yii::$app->user->identity->first_name . ' ' . Yii::$app->user->identity->last_name . ')',
 					    ['class' => 'btn btn-link logout']
 				    )
 				    . Html::endForm()

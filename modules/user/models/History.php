@@ -49,10 +49,10 @@ class History extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-	        'test_name' => 'Название теста',
-            'test_id' => 'Название теста',
-            'balls' => 'Балы',
-            'created_at' => 'Дата прохождения',
+	        'test_name' => 'Назва тесту',
+            'test_id' => 'Назва тесту',
+            'balls' => 'Бали',
+            'created_at' => 'Дата проходження',
         ];
     }
 

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\models\TestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Тесты';
+$this->title = 'Тести';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="test-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать тест', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Створити тест', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 		        'attribute' => 'status',
 		        'format' => 'raw',
-		        'filter' => ['0' => 'Отключенн', '1' => 'Включен'],
+		        'filter' => ['0' => 'Виключений', '1' => 'Включений'],
 		        'value' => function($data) {
-			        return $data->status ? '<span class="label label-success">Включен</span>' : '<span class="label label-danger">Отключен</span>';
+			        return $data->status ? '<span class="label label-success">Включений</span>' : '<span class="label label-danger">Виключений</span>';
 		        }
 	        ],
             'viewed',

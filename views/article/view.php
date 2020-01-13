@@ -8,7 +8,7 @@ use app\components\MenuWidget; ?>
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="box">
-						<h2>Категории</h2>
+						<h2>Категорії</h2>
 
 						<ul class="catalog category-products">
 							<?= MenuWidget::widget(['tpl' => 'menu']); ?>

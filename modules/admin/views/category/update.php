@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Category */
 
-$this->title = 'Редактирование Категории: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
+$this->title = 'Редагування категорії: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Категорія', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Редактирование';
+$this->params['breadcrumbs'][] = 'Редагування';
 ?>
 <div class="category-update">
 

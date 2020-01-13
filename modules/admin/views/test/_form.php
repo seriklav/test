@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(['0' => 'Отключенно', '1' => 'Включенно']) ?>
+    <?= $form->field($model, 'status')->dropDownList(['0' => 'Виключений', '1' => 'Включений']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

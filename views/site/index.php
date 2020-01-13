@@ -8,15 +8,15 @@ use yii\helpers\Url; ?>
 <section>
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Добро пожаловать!</h1>
+			<h1>Ласкаво просимо!</h1>
 
-			<p class="lead">Выбирите категорию и статью для обучения.</p>
+			<p class="lead">Виберіть категорію і статтю для навчання.</p>
 		</div>
 
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="box">
-					<h2>Категории</h2>
+					<h2>Категорія</h2>
 
 					<ul class="catalog category-products">
 						<?= MenuWidget::widget(['tpl' => 'menu']); ?>
@@ -29,7 +29,7 @@ use yii\helpers\Url; ?>
 				<div class="body-content">
 
 					<div class="box">
-						<h2>Последние статьи</h2>
+						<h2>Останні статті</h2>
 						<?php foreach (array_chunk($articles, 3) as $article_row): ?>
 							<div class="row">
 								<?php foreach ($article_row as $article): ?>

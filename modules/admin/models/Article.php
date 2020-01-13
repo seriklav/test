@@ -66,13 +66,13 @@ class Article extends \yii\db\ActiveRecord
 	public function attributeLabels()
 	{
 		return [
-			'id' => 'ID статьи',
-			'category_id' => 'Категория',
-			'category' => 'Категория',
-			'name' => 'Имя статьи',
-			'description' => 'Описание',
-			'created_at' => 'Дата создания',
-			'update_at' => 'Дата обновления',
+			'id' => 'ID статті',
+			'category_id' => 'Категорія',
+			'category' => 'Категорія',
+			'name' => 'Імя статті',
+			'description' => 'Опис',
+			'created_at' => 'Дата створення',
+			'update_at' => 'Дата оновлення',
 		];
 	}
 

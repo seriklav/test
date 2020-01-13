@@ -19,7 +19,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
 	<?= $form->field($model, 'category_id')->dropDownList($category->tree, [
 		'prompt' => [
-			'text' => 'Нет категории',
+			'text' => 'Без категорії',
 			'options' => [
 				'value' => '0'
 			]

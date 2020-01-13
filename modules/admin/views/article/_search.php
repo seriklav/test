@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
 	<?= $form->field($model, 'category_id')->dropDownList($category->tree, [
 		'prompt' => [
-			'text' => 'Нет категории',
+			'text' => 'Немає категорії',
 			'options' => [
 				'value' => '0'
 			]

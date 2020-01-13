@@ -39,13 +39,13 @@ AppAsset::register($this);
 			]);
 
 			$menuItems = [
-				['label' => 'Главная', 'url' => ['/']],
+				['label' => 'Головна', 'url' => ['/']],
 			];
 
 			$menuItems[] = '<li class="logout-main">'
 				. Html::beginForm(['/site/logout'], 'post')
 				. Html::submitButton(
-					'Выход (' . Yii::$app->user->identity->first_name . ' ' . Yii::$app->user->identity->last_name . ')',
+					'Вихід (' . Yii::$app->user->identity->first_name . ' ' . Yii::$app->user->identity->last_name . ')',
 					['class' => 'btn btn-link logout']
 				)
 				. Html::endForm()

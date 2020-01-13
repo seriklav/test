@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 	<?php $model->test_id = $model->test_id ?? $model->ref_test_id; ?>
 	<?= $form->field($model, 'test_id')->dropDownList(ArrayHelper::map(\app\modules\admin\models\Test::find()->all(),'id','name'), [
 		'prompt' => [
-			'text' => 'Без теста',
+			'text' => 'Без тесту',
 			'options' => [
 				'value' => '0'
 			]
@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-	<label class="control-label">Ответы</label>
+	<label class="control-label">Відповіді</label>
 	<button type="button" class="add-field btn btn-success btn-xs "><i class="glyphicon glyphicon-plus"></i></button>
 	<table class="table-container" style="width: 100%">
 		<tbody class="table-body">
@@ -61,7 +61,7 @@ use yii\widgets\ActiveForm;
 	    $(document).ready(function() {
         $('body').on('click', '.remove-item', function(e) {
             e.preventDefault();
-            if(confirm('Вы уверены?')){
+            if(confirm('Ви впевнені?')){
                 $(this).closest('.table-row').remove();
             }
             return false;

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\admin\models\Answer */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Вопросы и ответы', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Запитання та відповіді', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редагувати', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Видалити', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                'confirm' => 'Ви впевнені що хочете видалити це?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 		        'attribute' => 'test_id',
 		        'value' => function($data) {
-			        return $data->test->name ?? 'Нет';
+			        return $data->test->name ?? 'Немає';
 		        }
 	        ],
             'name',

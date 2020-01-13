@@ -54,9 +54,9 @@ class Answer extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'test_id' => 'Тест',
-            'name' => 'Вопрос',
-            'correct' => 'Правильный ответ',
-            'balls' => 'Балы',
+            'name' => 'Запитання',
+            'correct' => 'Правильна відповідь',
+            'balls' => 'Бали',
         ];
     }
 

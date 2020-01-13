@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Test */
 
-$this->title = 'Редактирование теста: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Тесты', 'url' => ['index']];
+$this->title = 'Редагувати тест: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Тести', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Редактирование';
+$this->params['breadcrumbs'][] = 'Редагування';
 ?>
 <div class="test-update">
 

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
 	<?= $form->field($model, 'parent_id')->dropDownList($model->tree, [
 		'prompt' => [
-			'text' => 'Нет родителя',
+			'text' => 'Немає батьків',
 			'options' => [
 				'value' => '0'
 			]

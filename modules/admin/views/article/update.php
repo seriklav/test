@@ -6,10 +6,10 @@ use yii\helpers\Html;
 /* @var $model app\modules\admin\models\Article */
 /* @var $category app\modules\admin\models\Category */
 
-$this->title = 'Редактирование Статьи: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'СТатьи', 'url' => ['index']];
+$this->title = 'Редагування статті: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Статті', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Редактирование';
+$this->params['breadcrumbs'][] = 'Редагування';
 ?>
 <div class="article-update">
 

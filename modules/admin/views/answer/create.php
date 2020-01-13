@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\modules\admin\models\Answer */
 /* @var $model app\modules\admin\models\Answer */
 
-$this->title = 'Создать Вопрос';
-$this->params['breadcrumbs'][] = ['label' => 'Вопросы и ответы', 'url' => ['index']];
+$this->title = 'Створити запитання';
+$this->params['breadcrumbs'][] = ['label' => 'Запитання та відповіді', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="answer-create">

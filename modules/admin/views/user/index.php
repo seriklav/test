@@ -8,7 +8,7 @@ use yii\jui\DatePicker;
 /* @var $searchModel app\modules\admin\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Пользователи';
+$this->title = 'Користувачі';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Створити користувача', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	        [
 		        'attribute' => 'role',
 		        'format' => 'raw',
-		        'filter' => ['0' => 'Пользователь', '1' => 'Администратор'],
+		        'filter' => ['0' => 'Користувач', '1' => 'Адміністратор'],
 		        'value' => function($data) {
-			        return $data->role ? '<span class="label label-warning">Администратор</span>' : '<span class="label label-success">Пользователь</span>';
+			        return $data->role ? '<span class="label label-warning">Адміністратор</span>' : '<span class="label label-success">Користувач</span>';
 		        }
 	        ],
             'rating',
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			        'model' => $searchModel,
 			        'attribute' => 'created_at',
 			        'dateFormat' => 'yyyy-MM-dd',
-			        'options' => ['class' => 'form-control', 'placeholder' => 'Дата создания...']
+			        'options' => ['class' => 'form-control', 'placeholder' => 'Дата створення...']
 		        ])
 	        ],
 	        [
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			        'model' => $searchModel,
 			        'attribute' => 'update_at',
 			        'dateFormat' => 'yyyy-MM-dd',
-			        'options' => ['class' => 'form-control', 'placeholder' => 'Дата обновления...']
+			        'options' => ['class' => 'form-control', 'placeholder' => 'Дата оновлення...']
 		        ])
 	        ],
 

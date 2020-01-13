@@ -13,7 +13,7 @@ use yii\widgets\LinkPager; ?>
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="box">
-					<h2>Категории</h2>
+					<h2>Категорії</h2>
 
 					<ul class="catalog category-products">
 						<?= MenuWidget::widget(['tpl' => 'menu']); ?>
@@ -26,7 +26,7 @@ use yii\widgets\LinkPager; ?>
 				<div class="body-content">
 
 					<div class="box">
-						<h2>Категория "<?= $model->name ?>"</h2>
+						<h2>Категорія "<?= $model->name ?>"</h2>
 						<?php if ($articles): ?>
 							<?php foreach (array_chunk($articles, 3) as $article_row): ?>
 								<div class="row">
@@ -48,7 +48,7 @@ use yii\widgets\LinkPager; ?>
 								]);
 							?>
 						<?php else: ?>
-							<div class="alert alert-warning">В этой категори нет материала для обучения.</div>
+							<div class="alert alert-warning">У цій категорії немає матеріалу для навчання</div>
 						<?php endif; ?>
 					</div>
 

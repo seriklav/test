@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать категорию', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Створити категорію', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'attribute' => 'parent_id',
 		        'filter' => ArrayHelper::map(Category::find()->all(), 'id', 'name'),
 		        'value' => function($data) {
-			        return $data->category->name ?? 'Нет';
+			        return $data->category->name ?? 'Немає';
 		        }
 	        ],
             'name',

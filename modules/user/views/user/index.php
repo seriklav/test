@@ -6,9 +6,9 @@
 use yii\grid\GridView;
 use yii\jui\DatePicker; ?>
 <div class="text-center">
-	<strong>БАЛЫ: <span class="label label-success"><?= Yii::$app->user->identity->rating ?></span></strong>
+	<strong>Бали: <span class="label label-success"><?= Yii::$app->user->identity->rating ?></span></strong>
 </div>
-<h2>Пройденные тесты</h2>
+<h2>Пройдені тести</h2>
 
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
@@ -29,7 +29,7 @@ use yii\jui\DatePicker; ?>
 				'model' => $searchModel,
 				'attribute' => 'created_at',
 				'dateFormat' => 'yyyy-MM-dd',
-				'options' => ['class' => 'form-control', 'placeholder' => 'Дата прохождения...']
+				'options' => ['class' => 'form-control', 'placeholder' => 'Дата прохождення...']
 			])
 		],
 	],

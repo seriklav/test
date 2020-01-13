@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Вход';
+$this->title = 'Вхід';
 ?>
 <div class="site-login">
 	<h1 class="text-center"><?= Html::encode($this->title) ?></h1>
@@ -28,7 +28,7 @@ $this->title = 'Вход';
 
 	<div class="form-group">
 		<div class="col-sm-12">
-			<?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+			<?= Html::submitButton('Увійти', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
 		</div>
 	</div>
 
