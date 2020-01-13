@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'attribute' => 'last_activity',
 		        'format' => 'raw',
 		        'value' => function($data) {
-    	            $last_activity = strtotime($data->last_activity) + strtotime('+30 min');
+    	            $last_activity = strtotime($data->last_activity) + strtotime('+10 min');
 
     	            if ($last_activity >= strtotime(date("d-m-Y H:i:s"))) {
 		                return '<span class="label label-success">Онлайн</span>';
