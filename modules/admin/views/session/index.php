@@ -42,7 +42,19 @@ $this->params['breadcrumbs'][] = $this->title;
 			        return !empty($data->user->email) ? $data->user->email : '<span class="label label-danger">Гість</span>';
 		        }
 	        ],
-            'last_activity',
+	        [
+		        'attribute' => 'last_activity',
+		        'format' => 'raw',
+		        'value' => function($data) {
+    	            $last_activity = strtotime($data->last_activity) + strtotime('+10 min');
+
+    	            if ($last_activity <= strtotime(date("d-m-Y H:i:s"))) {
+		                return '<span class="label label-success">Онлайн</span>';
+	                } else {
+				        return $data->last_activity;
+			        }
+		        }
+	        ],
             'last_ip',
 
             //['class' => 'yii\grid\ActionColumn'],
