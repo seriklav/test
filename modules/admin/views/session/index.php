@@ -25,19 +25,21 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'attribute' => 'first_name',
 		        'format' => 'raw',
 		        'value' => function($data) {
-			        return !empty($data->user->first_name) ? '<span class="label label-danger">Гость</span>' : '';
+			        return !empty($data->user->first_name) ? '<span class="label label-danger">Гість</span>' : '';
 		        }
 	        ],
 	        [
 		        'attribute' => 'last_name',
+		        'format' => 'raw',
 		        'value' => function($data) {
-			        return !empty($data->user->last_name) ? '<span class="label label-danger">Гость</span>' : '';
+			        return !empty($data->user->last_name) ? '<span class="label label-danger">Гість</span>' : '';
 		        }
 	        ],
 	        [
 		        'attribute' => 'email',
+		        'format' => 'raw',
 		        'value' => function($data) {
-			        return !empty($data->user->email) ? '<span class="label label-danger">Гость</span>' : '';
+			        return !empty($data->user->email) ? '<span class="label label-danger">Гість</span>' : '';
 		        }
 	        ],
             'last_activity',
