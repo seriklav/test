@@ -40,7 +40,9 @@ class SessionSearch extends Session
      */
     public function search($params)
     {
-        $query = Session::find()->groupBy('user_id');
+        $query = Session::find()->from([
+        	'session' => Session::find()->orderBy(['last_activity' => SORT_DESC])
+        ])->groupBy('user_id');
 
         // add conditions that should always apply here
 
