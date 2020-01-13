@@ -46,6 +46,7 @@ AppAsset::register($this);
 					['label' => 'Пользователи', 'url' => ['/admin/user']],
 					['label' => 'Тесты', 'url' => ['/admin/test']],
 					['label' => 'Ответы-Вопросы', 'url' => ['/admin/answer']],
+					['label' => 'Онлайн', 'url' => ['/admin/session']],
 				];
 			} elseif (Yii::$app->user->identity->role == User::ROLE_USER) {
 
